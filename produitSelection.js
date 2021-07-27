@@ -16,7 +16,7 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
           console.log(data);
 
          let affichageProduit = `
-            <div class="col-6 bg-dark">
+            <div class="col-6">
                 <img src="${data.imageUrl}" class="d-block w-100" alt="..."></div>
             </div>
             <div class="col-6">
@@ -24,7 +24,7 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
                     <h1>${data.name}</h1>
                 </div>
                 <div>
-                    <p>${data.description}</p>
+                    <p> Prix ${data.price} $</p>
                 </div>
                 <div>
                     <label for="form-select" class="form-label">lentilles</label>
@@ -49,17 +49,25 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
                 </div>
                 <div>   
                 <button type="submit" class="btn btn-primary">Ajouter au panier</button>
-            </div> 
+                </div> 
+            </div>
+
+            <div class="col-6 mt-3 border-bottom  border-top ">
+                    <p> Description </p>
+                    <p> ${data.description} </p>
+            </div>
             `;
          
-            //   boucle pour option de la lentille
+            
      
           document.querySelector(".fiche-produit")
           .innerHTML = affichageProduit;
 
        
-        });
-  
+        })
+        .catch(function(err){
+            console.log("erreur: " +err );
+          })
     });  
   };
 
@@ -69,18 +77,23 @@ async  function selectionLentilles() {
     let data = await response.json();
     console.log(data);
     let affichageList = ` `;
-         
-    for (let list of data.lenses){
-        console.log(typeof(list));
-       affichageList += `   
-                <option value="${list}">${list}</option>
-       `
+    
+    try{
+        for (let list of data.lenses){
+            console.log(typeof(list));
+           affichageList += `   
+                    <option value="${list}">${list}</option>
+           `
+        }
+           console.log(affichageList);
+           document
+            .querySelector(".optionlentille")
+            .innerHTML = affichageList;
     }
-       console.log(affichageList);
-       document
-        .querySelector(".optionlentille")
-        .innerHTML = affichageList;
-        
+    
+    catch(err){
+        console.log("erreur: " +err );
+    };
   
     
   };

@@ -2,7 +2,7 @@
   "name": "orinoco-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js", 
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.0.2",
     "express": "^4.16.4",
     "uuid": "^3.3.2"
   },
