@@ -1,11 +1,13 @@
 // recuperation du paramettre de reqquete dans l'url
 
+
+
 let params = (new URL(document.location)).searchParams;
 let id = params.get('id');
 console.log(id);
 
 //  url avec l'ajout de id 
-const urlId = `http://localhost:3000/api/cameras/${id}`;
+const urlId = `https://p5.gbriele.repl.co/api/cameras/${id}`;
 
 //  recuperation de la liste des produits
  const pageProduits = function () {
@@ -13,8 +15,7 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
         response.json()
   
         .then(function(data) {
-          console.log(data);
-
+//   affichage du produit  
          let affichageProduit = `
             <div class="col-6">
                 <img src="${data.imageUrl}" class="d-block w-100" alt="..."></div>
@@ -28,13 +29,13 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
                 </div>
                 <div>
                     <label for="form-select" class="form-label">lentilles</label>
-                    <select class="form-select optionlentille" aria-label="quantité" >
+                    <select class="form-select optionlentille" aria-label="lentilles" >
                         
                     </select>
                 </div>
                 <div>
                     <label for="form-select" class="form-label">quantité</label>
-                    <select class="form-select" aria-label="quantité" >
+                    <select class="form-select" aria-label="quantité" id="quantité" >
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -48,7 +49,7 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
                     </select>
                 </div>
                 <div>   
-                <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+                 <button type="submit" class="btn btn-primary" id="btnPanier">Ajouter au panier</button>
                 </div> 
             </div>
 
@@ -58,11 +59,74 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
             </div>
             `;
          
-            
+ //      insertion de la fiche produit dans le html
      
-          document.querySelector(".fiche-produit")
-          .innerHTML = affichageProduit;
+            document.querySelector(".fiche-produit")
+            .innerHTML = affichageProduit;
 
+//      boucle pour les valeur de lentille et insertion dans le html
+
+            let affichageList = '';
+            for (let list of data.lenses){
+                affichageList += `   
+                        <option value="${list}">${list}</option>
+               `
+            }
+               document
+                .querySelector(".optionlentille")
+                .innerHTML = affichageList;
+             ;
+
+
+
+
+
+//      recuparation et ecoute du bouton 
+          const ajout = document.getElementById("btnPanier");
+         
+          
+          ajout.addEventListener('click', (e) =>{
+                
+                e.preventDefault();
+                e.stopPropagation();
+
+
+                //     recuperation de la quantité
+                let quantiteProduit = document.getElementById("quantité");  
+                quantiteChoisi = quantiteProduit.value;
+                  
+
+                //     recuperation de la lentille choisi
+                let lentille = document.querySelector(".optionlentille");  
+                lentilleChoisi = lentille.value;
+                 
+
+
+                let ficheProduit = {
+                    idProduit : data._id,
+                    nomProduit : data.name,
+                    lentilleChoisi : lentilleChoisi,
+                    quantite :quantiteChoisi,
+                    prix: data.price
+
+                };
+
+                let produitStorage = JSON.parse(localStorage.getItem('produit'));
+                
+                if (produitStorage ){
+                    console.log("ok");
+                    produitStorage.push(ficheProduit);
+                    localStorage.setItem('produit',JSON.stringify(produitStorage)); 
+                    
+                  
+                } else {
+                    produitStorage= [] ;
+                    produitStorage.push(ficheProduit);
+                    localStorage.setItem('produit',JSON.stringify(produitStorage)); 
+                    console.log(produitStorage);
+                };
+                
+          });
        
         })
         .catch(function(err){
@@ -71,31 +135,38 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
     });  
   };
 
-
-async  function selectionLentilles() {
-    let response = await fetch(urlId);
-    let data = await response.json();
-    console.log(data);
-    let affichageList = ` `;
+    //   recupreration des choix de lentilles et insertion dans le html
+// async  function selectionLentilles() {
+//     let response = await fetch(urlId);
+//     let data = await response.json();
+//     let affichageList = ` `;
     
-    try{
-        for (let list of data.lenses){
-            console.log(typeof(list));
-           affichageList += `   
-                    <option value="${list}">${list}</option>
-           `
-        }
-           console.log(affichageList);
-           document
-            .querySelector(".optionlentille")
-            .innerHTML = affichageList;
-    }
+//     try{
+//         for (let list of data.lenses){
+//             affichageList += `   
+//                     <option value="${list}">${list}</option>
+//            `
+//         }
+//            document
+//             .querySelector(".optionlentille")
+//             .innerHTML = affichageList;
+//     }
     
-    catch(err){
-        console.log("erreur: " +err );
-    };
+//     catch(err){
+//         console.log("erreur: " +err );
+//     };
   
     
-  };
-  pageProduits();
-  selectionLentilles();
+//   };
+
+
+
+
+
+
+
+pageProduits();
+// selectionLentilles();
+
+
+
