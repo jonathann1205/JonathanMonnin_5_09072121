@@ -11,23 +11,32 @@
     <div class="container">
               <header class="pt-3 pb-3 mb-3 border-bottom ">
                   <div class="container position-relative ">
-                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end  ">
+                    <div class="d-flex flex-wrap align-items-center  justify-content-lg-end justify-content-end ">
                       <a href="./accueil.html" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none ">
                             <img src="/images/logo.png" alt="image du logo Orinoco" class="imgLogo position-absolute  start-0  ">
                       </a>
           
-                      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 ">
+                      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 order-md-2 order-sm-2 order-2 ">
                         <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
                       </form>
-                      <div>
-                        <a href="./panier.html">
-                          <img src="./images/logoPanier.png" alt="">
+                      <div class="row order-lg-2 ">
+                        <a href="./panier.html" class="">
+                          <img src="./images/logoPanier.png" alt=" image du logo et acces au panier">
                         </a>
                       </div>
                       
                     </div>
                   </div>
               </header>
+              <div class="panierVide p-3 mb-4 text-center border-bottom ">
+                <h1>Votre panier est vide. </h1>
+                <div> 
+                  <a href="/accueil.html"> 
+                    <button type="submit" class="btn m-4 btn-primary" id="btnPanier">retour vers l'accueil</button>
+                  </a> 
+                </div> 
+
+              </div>
               <div class="pagePanier">
                 <div class="row justify-content-center">
                   <div>
@@ -40,7 +49,7 @@
                       <table class="table ">
                         <thead>
                           <tr>
-                            <th scope="col">#</th>
+                            
                             <th scope="col">Nom</th>
                             <th scope="col">Lentille</th>
                             <th scope="col">Quantité</th>
@@ -53,29 +62,32 @@
                       </table>
                     </div>  
                 </div>
+                <div class="total col-12 d-flex justify-content-center ">
+
+                </div>
                 <div class="row formPanier d-flex justify-content-center  ">
-                  <form class="row g-3 d-flex justify-content-center">
-                    <div class="col-4">
+                  <form class="row g-3 d-flex justify-content-center col-8">
+                    <div class="col-6">
                       <label for="inputNom" class="form-label">Nom</label>
-                      <input type="text" class="form-control border-bottom form-control-plaintext rounded-0" placeholder="Nom" aria-label="First name">
+                      <input type="text" id="nomForm" class="form-control border-bottom form-control-plaintext rounded-0" placeholder="Nom" aria-label="nom">
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                       <label for="inputPrenom" class="form-label">Prénom</label>
-                      <input type="text" class="form-control border-bottom form-control-plaintext rounded-0" placeholder="Prénom" aria-label="Last name">
+                      <input type="text" id="prenomForm" class="form-control border-bottom form-control-plaintext rounded-0" placeholder="Prénom" aria-label="Prenom">
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-12">
                       <label for="inputEmail4" class="form-label">Email</label>
                       <input type="email" class="form-control border-bottom form-control-plaintext rounded-0" id="inputEmail4">
                     </div>
-                    <div class="col-8">
+                    <div class="col-12">
                       <label for="inputAddress" class="form-label">Address</label>
                       <input type="text" class="form-control border-bottom form-control-plaintext rounded-0" id="inputAddress" placeholder="1234 Main St">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-12">
                       <label for="inputCity" class="form-label">Ville</label>
                       <input type="text" class="form-control border-bottom form-control-plaintext rounded-0" id="inputCity">
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-12">
                       <label for="inputZip" class="form-label">Code postal </label>
                       <input type="text" class="form-control border-bottom form-control-plaintext rounded-0" id="inputZip">
                     </div>

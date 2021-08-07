@@ -95,6 +95,15 @@ const urlId = `https://p5.gbriele.repl.co/api/cameras/${id}`;
                 let quantiteProduit = document.getElementById("quantité");  
                 quantiteChoisi = quantiteProduit.value;
                   
+                //     multiplication du prix par rapport a la quantite
+                let prixMulti = 0;
+                if(quantiteChoisi >1){
+                     prixMulti = quantiteChoisi * data.price
+                    console.log(prixMulti);
+                } else {
+                    prixMulti = data.price
+                    console.log(prixMulti);
+                }
 
                 //     recuperation de la lentille choisi
                 let lentille = document.querySelector(".optionlentille");  
@@ -107,7 +116,7 @@ const urlId = `https://p5.gbriele.repl.co/api/cameras/${id}`;
                     nomProduit : data.name,
                     lentilleChoisi : lentilleChoisi,
                     quantite :quantiteChoisi,
-                    prix: data.price
+                    prix: prixMulti
 
                 };
 
@@ -135,38 +144,10 @@ const urlId = `https://p5.gbriele.repl.co/api/cameras/${id}`;
     });  
   };
 
-    //   recupreration des choix de lentilles et insertion dans le html
-// async  function selectionLentilles() {
-//     let response = await fetch(urlId);
-//     let data = await response.json();
-//     let affichageList = ` `;
-    
-//     try{
-//         for (let list of data.lenses){
-//             affichageList += `   
-//                     <option value="${list}">${list}</option>
-//            `
-//         }
-//            document
-//             .querySelector(".optionlentille")
-//             .innerHTML = affichageList;
-//     }
-    
-//     catch(err){
-//         console.log("erreur: " +err );
-//     };
-  
-    
-//   };
-
-
-
-
-
-
 
 pageProduits();
-// selectionLentilles();
+
+
 
 
 
