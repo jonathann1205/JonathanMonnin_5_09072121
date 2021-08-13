@@ -1,0 +1,30 @@
+.slide {
+  height: 300px;
+  display: block;
+  overflow: hidden;
+}
+
+.img-Carousel {
+  transform: translateY(-170px);
+}
+
+.card-title {
+  margin-top: 1rem;
+}
+
+.card-price {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.btn {
+  background: linear-gradient(305deg, #905bfe 24%, #e68d08 100%);
+  border: none;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -4,10 +4,10 @@
 
 let params = (new URL(document.location)).searchParams;
 let id = params.get('id');
-console.log(id);
+
 
 //  url avec l'ajout de id 
-const urlId = `https://p5.gbriele.repl.co/api/cameras/${id}`;
+const urlId = `http://localhost:3000/api/cameras/${id}`;
 
 //  recuperation de la liste des produits
  const pageProduits = function () {
@@ -17,15 +17,15 @@ const urlId = `https://p5.gbriele.repl.co/api/cameras/${id}`;
         .then(function(data) {
 //   affichage du produit  
          let affichageProduit = `
-            <div class="col-6">
+            <div class="col-12 col-md-6">
                 <img src="${data.imageUrl}" class="d-block w-100" alt="..."></div>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-md-6">
                 <div>
                     <h1>${data.name}</h1>
                 </div>
                 <div>
-                    <p> Prix ${data.price} $</p>
+                    <p> Prix ${data.price} </p>
                 </div>
                 <div>
                     <label for="form-select" class="form-label">lentilles</label>
@@ -49,13 +49,14 @@ const urlId = `https://p5.gbriele.repl.co/api/cameras/${id}`;
                     </select>
                 </div>
                 <div>   
-                 <button type="submit" class="btn btn-primary" id="btnPanier">Ajouter au panier</button>
+                 <button type="submit" class="btn btn-primary mt-4" id="btnPanier">Ajouter au panier</button>
                 </div> 
             </div>
-
-            <div class="col-6 mt-3 border-bottom  border-top ">
-                    <p> Description </p>
-                    <p> ${data.description} </p>
+            <div class="row col-12 mt-3 justify-content-center border-bottom border-top ">
+                <div class=" col-12  mt-3    ">
+                        <h2> Description </p>
+                        <p> ${data.description} </p>
+                </div>
             </div>
             `;
          
@@ -109,7 +110,7 @@ const urlId = `https://p5.gbriele.repl.co/api/cameras/${id}`;
                 let lentille = document.querySelector(".optionlentille");  
                 lentilleChoisi = lentille.value;
                  
-
+                //    creation fiche produit et sauvegarde dans le local storage
 
                 let ficheProduit = {
                     idProduit : data._id,

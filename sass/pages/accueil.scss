@@ -1,0 +1,30 @@
+
+.slide {
+    height: 300px;
+    display: block;
+    overflow: hidden;
+  }
+
+
+.produit{
+    // flex-flow: column wrap;
+}
+
+.img-Carousel{
+
+    transform: translateY(-170px);
+
+
+}
+.card-title{
+    margin-top: 1rem;
+}
+
+.card-price{
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+
+}
+
+  
