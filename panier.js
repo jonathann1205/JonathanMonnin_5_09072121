@@ -2,6 +2,13 @@
 //   recupertion du panier clients 
  let panierClient = JSON.parse( localStorage.getItem("produit"));
  
+
+ affichagePanier();
+ totalPanierClient();
+ validiteForm();
+
+
+ 
 function affichagePanier(){
 
 // si le panier est vide 
@@ -46,26 +53,29 @@ function affichagePanier(){
 function totalPanierClient() {
 let totalPanier = [];
 
-for (let i =0; i < panierClient.length; i++){
-    let  PrixClient = panierClient[i].prix;
-    totalPanier.push(PrixClient);
-    
-};
-
-const reducer = (accumlator, currentValue) => accumlator + currentValue;
-const prixTotalPanier = totalPanier.reduce(reducer,0);
 
 
-let affichagePrixTotal =`
-                        <p class="fs-4 col-4 ps-3 "><strong> Total </strong></p>
-                        <p class="fs-4  text-center  col-4 ps-5 ">${prixTotalPanier}</p>
+  for (let i =0; i < panierClient.length; i++){
+      let  PrixClient = panierClient[i].prix;
+      totalPanier.push(PrixClient);
+      
+      const reducer = (accumlator, currentValue) => accumlator + currentValue;
+      const prixTotalPanier = totalPanier.reduce(reducer,0);
+
+
+      let affichagePrixTotal =`
+                        <p class="fs-4 col-6 col-sm-4 ps-3 "><strong> Total </strong></p>
+                        <p class="fs-4  text-center  col-6 col-sm-4 ps-5 ">${prixTotalPanier}</p>
                         `;
 
 
 
-document
-    .querySelector(".total")
-    .innerHTML = affichagePrixTotal;
+      document
+          .querySelector(".total")
+          .innerHTML = affichagePrixTotal;
+        };
+
+
 
 };
 
@@ -87,8 +97,9 @@ function vidagePanier (){
 const btnVidePanier = document.querySelector('#btnViderPanier');
 
 btnVidePanier.addEventListener('click' ,function (){
-
+  
     vidagePanier();
+    
     });
 
 //  validation du formullaire  (valide en amont par des regex dans le html  grace a required pattern)
@@ -108,6 +119,7 @@ function validiteForm(){
             
           } else{
             envoiCommande()
+            localStorage.clear();
             event.preventDefault()
             event.stopPropagation()
             console.log("ok");
@@ -123,8 +135,14 @@ function validiteForm(){
       });
       
 };
+//  boucle pour recuperer le product id du des element du panier et le metre dans un tableau
+let panierId =[];
+if(!panierClient == null){
+  for (let list of panierClient){
+    panierId.push(list.idProduit);
 
-
+  }; 
+};  
 
 
 function envoiCommande(){
@@ -138,6 +156,7 @@ let ville = document.querySelector('#villeForm').value
 let codePostal = document.querySelector('#codePostalForm').value
 
 
+
   //   creation 
 
 let donneClient = {
@@ -146,10 +165,10 @@ let donneClient = {
     firstName : nom,
     lastName: prenom,
     address: address ,
-    city: ville,
+    city: ville +''+codePostal,
     email: email
   },  
-  products: panierClient,
+  products:panierId,
 }
 console.log(JSON.stringify(donneClient));
 //   envois vers l api les donnée du formulaire
@@ -160,19 +179,27 @@ const requestOptions = {
   headers: { 'Content-Type': 'application/json; charset=utf-8' },
 }
 
- fetch(" http://localhost:3000/api/cameras/order", requestOptions)
+ fetch("http://localhost:3000/api/cameras/order", requestOptions)
 
     .then((response) =>  response.json())
     .then((data) => {
-      console.log(data);
-      localStorage.setItem("commandeInfos", JSON.stringify(data))
+      
+      localStorage.setItem("commandeInfos", JSON.stringify(data.orderId))
+      window.location.href= "http://127.0.0.1:5050/confirmation.html"
+      
     })
     .catch((error) => console.log("erreur de type : ", error))
+
+
+
+
 
 
   };
 
 
-  affichagePanier();
-totalPanierClient();
-validiteForm();
+
+
+ 
+ 
+

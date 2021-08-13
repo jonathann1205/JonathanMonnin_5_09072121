@@ -3,19 +3,27 @@
     height: 300px;
     display: block;
     overflow: hidden;
+
+    @media (max-width:767px) {
+        height: 170px;
+    }
+    @media (max-width:320px) {
+        height: 115px;
+    }
   }
 
-
-.produit{
-    // flex-flow: column wrap;
+.carousel-inner{
+   
+    transform: translateY(-190px);
+    @media (max-width:767px) {
+        transform: translateY(-60px);
+    }
+    @media (max-width:320px) {
+        transform: translateY(-20px);
+    }
 }
 
-.img-Carousel{
 
-    transform: translateY(-170px);
-
-
-}
 .card-title{
     margin-top: 1rem;
 }

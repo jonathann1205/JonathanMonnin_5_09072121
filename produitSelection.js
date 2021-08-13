@@ -50,10 +50,13 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
                 </div>
                 <div>   
                  <button type="submit" class="btn btn-primary mt-4" id="btnPanier">Ajouter au panier</button>
-                </div> 
+                </div>
+                <div class=" deroulant bg-success rounded  ">
+                <p class="ajoutPanier text-center text-white mt-5  ">Le produit a été ajouté au panier. </p>
+                </div>
             </div>
-            <div class="row col-12 mt-3 justify-content-center border-bottom border-top ">
-                <div class=" col-12  mt-3    ">
+            <div class="row col-12 mt-5 justify-content-center border-bottom border-top ">
+                <div class=" col-12  mt-4    ">
                         <h2> Description </p>
                         <p> ${data.description} </p>
                 </div>
@@ -84,13 +87,14 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
 
 //      recuparation et ecoute du bouton 
           const ajout = document.getElementById("btnPanier");
-         
+          
+
           
           ajout.addEventListener('click', (e) =>{
                 
                 e.preventDefault();
                 e.stopPropagation();
-
+                deroulant();
 
                 //     recuperation de la quantité
                 let quantiteProduit = document.getElementById("quantité");  
@@ -100,10 +104,10 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
                 let prixMulti = 0;
                 if(quantiteChoisi >1){
                      prixMulti = quantiteChoisi * data.price
-                    console.log(prixMulti);
+                    
                 } else {
                     prixMulti = data.price
-                    console.log(prixMulti);
+                    
                 }
 
                 //     recuperation de la lentille choisi
@@ -124,7 +128,7 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
                 let produitStorage = JSON.parse(localStorage.getItem('produit'));
                 
                 if (produitStorage ){
-                    console.log("ok");
+                    
                     produitStorage.push(ficheProduit);
                     localStorage.setItem('produit',JSON.stringify(produitStorage)); 
                     
@@ -133,7 +137,7 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
                     produitStorage= [] ;
                     produitStorage.push(ficheProduit);
                     localStorage.setItem('produit',JSON.stringify(produitStorage)); 
-                    console.log(produitStorage);
+                    
                 };
                 
           });
@@ -144,6 +148,13 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
           })
     });  
   };
+
+function deroulant(){
+  let deroulant = document.querySelector(".deroulant")
+  deroulant.style.display = "block";
+  
+  
+}
 
 
 pageProduits();
