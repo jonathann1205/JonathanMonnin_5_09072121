@@ -28,14 +28,14 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
                     <p> Prix ${data.price} </p>
                 </div>
                 <div>
-                    <label for="form-select" class="form-label">lentilles</label>
+                    <label for="form-select" class="form-label">Lentille</label>
                     <select class="form-select optionlentille" aria-label="lentilles" >
                         
                     </select>
                 </div>
                 <div>
-                    <label for="form-select" class="form-label">quantité</label>
-                    <select class="form-select" aria-label="quantité" id="quantité" >
+                    <label for="form-select" class="form-label mt-2">Quantité</label>
+                    <select class="form-select " aria-label="Quantité" id="quantité" >
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>

@@ -15,7 +15,7 @@ const getCams = function () {
         <div class="card col-12 md-col-4 col-md-4  mb-1 border-end ">
           <a href="./produit.html?id=${list._id}" class=" text-dark text-decoration-none">
             <div class="card-body">
-                <div class="card-img "><img src="${list.imageUrl}" class="d-block w-100 rounded-1" alt="..."></div>
+                <div class="card-img "><img src="${list.imageUrl}" class="imgCams d-block w-100 rounded-1" alt="..."></div>
                 <div class = "d-flex justify-content-between ">
                 <h2 class="card-title">${list.name}</h2>
                 <p class="card-price ">${list.price}</p>
