@@ -7,6 +7,7 @@ const getCams = function () {
       response.json()
 
       .then(function(data) {
+       
         let affichageList = ``;
        
         // afficher les produit  dans le html  avec une boucle
@@ -29,6 +30,7 @@ const getCams = function () {
       })
       .catch(function(err){
         console.log("erreur: " +err );
+     
       })
   });  
 };
@@ -54,12 +56,17 @@ async  function imgCarousel() {
       .innerHTML = affichageList;
   }      
   catch(err){
+   
     console.log("erreur: " +err );
-};
+       
+  };
       
 
   
 };
 
+
 getCams();
 imgCarousel();
+
+

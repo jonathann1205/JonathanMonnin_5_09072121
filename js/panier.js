@@ -184,8 +184,8 @@ const requestOptions = {
     .then((response) =>  response.json())
     .then((data) => {
       
-      localStorage.setItem("commandeInfos", JSON.stringify(data.orderId))
-      window.location.href= "http://127.0.0.1:5050/confirmation.html"
+      
+      window.location.href = `${window.location.origin}/confirmation.html?orderId=${data.orderId}`
       
     })
     .catch((error) => console.log("erreur de type : ", error))

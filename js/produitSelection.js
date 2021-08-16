@@ -149,6 +149,7 @@ const urlId = `http://localhost:3000/api/cameras/${id}`;
     });  
   };
 
+//   fait appraitre un bandeau produit ajouter au panier 
 function deroulant(){
   let deroulant = document.querySelector(".deroulant")
   deroulant.style.display = "block";

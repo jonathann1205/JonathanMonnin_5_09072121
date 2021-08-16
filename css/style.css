@@ -42,9 +42,9 @@
   }
 }
 
-.imgCams {
-  height: 190px;
-  width: 190px;
+.card-img {
+  display: block;
+  overflow: hidden;
 }
 
 .card-title {
