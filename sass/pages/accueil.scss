@@ -22,21 +22,35 @@
         transform: translateY(-20px);
     }
 }
-.card-img{
 
-   display: block;
-   overflow: hidden;
-    
+
+.card-body{
+//     display: block;
+//    overflow: hidden;
+padding: 0.5rem 0.5rem;
+ 
 }
 
-.imgCams{
+.card{
+  
+   height: 100%;
+   & img{
+      max-height:100%;
+      width:500px;
+      height: 245px;
+      @media (max-width:767px) {
+        height: 100%;
+    }
+   }
+   & img:hover{
     
-    
+    opacity: 50%;
+   }
 }
-
 
 .card-title{
     margin-top: 1rem;
+   
 }
 
 .card-price{

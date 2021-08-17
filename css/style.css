@@ -42,9 +42,25 @@
   }
 }
 
-.card-img {
-  display: block;
-  overflow: hidden;
+.card-body {
+  padding: 0.5rem 0.5rem;
+}
+
+.card {
+  height: 100%;
+}
+.card img {
+  max-height: 100%;
+  width: 500px;
+  height: 245px;
+}
+@media (max-width: 767px) {
+  .card img {
+    height: 100%;
+  }
+}
+.card img:hover {
+  opacity: 50%;
 }
 
 .card-title {

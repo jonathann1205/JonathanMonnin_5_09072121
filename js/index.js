@@ -12,17 +12,21 @@ const getCams = function () {
        
         // afficher les produit  dans le html  avec une boucle
         for (let list of data){
-         affichageList += `   
-        <div class="card col-12 md-col-4 col-md-4  mb-1 border-end ">
-          <a href="./produit.html?id=${list._id}" class=" text-dark text-decoration-none">
-            <div class="card-body">
-                <div class="card-img "><img src="${list.imageUrl}" class="imgCams d-block w-100 rounded-1" alt="..."></div>
-                <div class = "d-flex justify-content-between ">
-                <h2 class="card-title">${list.name}</h2>
-                <p class="card-price ">${list.price}</p>
-                </div>
-            </div>
-          </a>
+         affichageList += `
+        <div class=" mt-1 ">   
+          <div class=" card border-end ">
+            <a href="./produit.html?id=${list._id}" class=" text-dark text-decoration-none">
+              <div class="card-body">
+                  <div class=" blockImg ">
+                      <img src="${list.imageUrl}" class="img-fluid shadow-1-strong rounded-1"  alt="image de l'appareil photo ${list.name} ">  
+                  </div>
+                  <div class = " card-back d-flex justify-content-between ">
+                  <h2 class="card-title">${list.name}</h2>
+                  <p class="card-price ">${list.price}</p>
+                  </div>
+              </div>
+            </a>
+          </div>
         </div>`
         }
         document.querySelector(".produit")
